@@ -10,3 +10,8 @@ crear un repositorio
 	git remote add origin https://github.com/GIPP27/CRUDROPA.git
 	git push -u origin main
 	
+actualizar un repositorio
+	
+	git add .
+	git commit -m "first commit"
+	git push -u origin main
