@@ -1,0 +1,88 @@
+LeeMe.md
+
+	Este proyecto muestra la implementación de las cuatro operaciones principales (Create, Read, Update, Delete) sobre una base de datos de ropa, organizada bajo la arquitectura de Modelo, Vista y Controlador (MVC). La aplicación presenta una interfaz de usuario para gestionar el inventario de ropa almacenado en una base de datos.
+
+# Contenido
+	─Descripción.
+	─Actualización.
+	─Ejecución.
+	─Glosario.
+	─Referencias.
+
+## Antecedente. 
+	Este proyecto de CRUD sigue una arquitectura por capas donde cada solicitud de cliente es manejada mediante un controlador. El servidor Apache utiliza archivos .htaccess para redirigir las peticiones del cliente y prohibir el acceso directo al índice del proyecto en la carpeta raíz.
+			
+# Descripción.
+<que>
+		Esta aplicación web permite a los usuarios gestionar un inventario de ropa. Muestra una lista de prendas con atributos como nombre, categoría, marca, y precio, almacenados en una base de datos. Los usuarios pueden agregar, modificar o eliminar prendas a través de una interfaz web amigable.
+		
+<cuales>
+		El cliente realiza una petición a través del navegador y el servidor responde con una lista de ropa extraída de la base de datos.
+
+			Las URLs pueden ser generica o específicas. 
+
+		i)Una URL generica (http://localhost/CrudRopa/) mostrará una tabla con todas las prendas. 
+		ii)Una URL específica (http://localhost/CrudRopa/ropa/modificar/8) se utilizará para realizar operaciones en un registro concreto de la base de datos.
+		
+		
+		
+		 
+		
+		elementos:
+
+			http://localhost/CRUDROPA/ropa/borrar/
+		
+				http://			
+				localhost/		
+				CRUDROPA/
+				ropa/	   <-define controlador especializado, es una clase con métodos para gestionar un registro. 
+		
+		Las tareas de adminstración de registros de la colección de la ropa es:
+		
+			a) modificar($id)	<-define e identifica y modificar los atributos: Nombre de la prenda, Marca, Tipo de tela. 
+			b) borrar($id)		<-define e identifica y elimina un registro existente y sus atributos.
+			c) alta()			<-incorporar un nuevo registro con atributos. 
+				
+
+<donde>
+		 
+		
+CRUDRopa
+│
+├── app
+│   ├── controladores    # Controladores que gestionan la lógica de la aplicación.
+│   ├── modelos          # Modelos que interactúan con la base de datos.
+│   ├── vistas           # Vistas que renderizan la interfaz de usuario.
+│   └── libs             # Librerías de apoyo (conexión a la base de datos, manejo de controladores).
+│
+├── public
+│   ├── css              # Hojas de estilo CSS.
+│   ├── js               # Scripts JavaScript.
+│   └── index.php        # Punto de entrada principal de la aplicación.
+│
+└── .htaccess            # Archivo de configuración para redirigir peticiones.
+
+*Actualización*
+
+	El archivo .htaccess en la carpeta public redirige todas las solicitudes a index.php, que luego decide qué controlador y acción ejecutar. Este archivo es fundamental para el correcto funcionamiento de la aplicación, ya que garantiza que las URLs se procesen correctamente.
+
+
+*Bash*
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /CrudRopa/public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+*Glosario*
+
+CRUD: Operaciones de Crear, Leer, Actualizar y Eliminar (Create, Read, Update, Delete) registros en una base de datos.
+MVC: Arquitectura Modelo-Vista-Controlador que organiza la lógica de la aplicación.
+.htaccess: Archivo de configuración de Apache que define reglas para el acceso a los recursos en el servidor.
+
+*REFERENCIAS*
+O. Martin.
+CRUD_CSS
